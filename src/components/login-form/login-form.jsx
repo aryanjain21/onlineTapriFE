@@ -12,7 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Typography } from '@mui/material';
-import { signIn } from '../../services/http/http';
+import { signIn } from '../../services';
 import { useUser } from '../../context/userContext';
 
 const LoginForm = (props) => {
@@ -68,8 +68,11 @@ const LoginForm = (props) => {
                     // toast.success(res.data.message);
                     // setLoader(false);
                     let user = res.data.data;
-                    localStorage.setItem('setUser', JSON.stringify({ firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token }));
+                    localStorage.setItem('setUser', JSON.stringify({ firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token, id: user._id }));
                     userDispatch({ type: 'SIGNIN', payload: user });
+                    if (typeof window !== 'undefined') {
+                        window.location.href = '/'
+                    }
                 }
             } catch (error) {
                 // setLoader(true);

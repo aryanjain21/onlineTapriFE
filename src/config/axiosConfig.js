@@ -2,7 +2,7 @@ import axios from 'axios';
 
 (function (axios) {
     axios.interceptors.request.use(function (req) {
-        if(req.url.includes('api')) {
+        if (req.url.includes('api')) {
             let user = JSON.parse(localStorage.getItem('setUser')) || {};
             req.headers.token = user.token;
         }
@@ -16,7 +16,9 @@ import axios from 'axios';
         if (error.response) {
             if (error.response.status === 401) {
                 localStorage.removeItem('setUser');
-                typeof window !== 'undefined' && window.location.reload();
+                if(typeof window !== 'undefined') {
+                    window.location.href = '/login'
+                }
                 return Promise.reject(error);
             } else return Promise.reject(error);
         } else if (error.request) {
@@ -29,9 +31,9 @@ import axios from 'axios';
             }
             return Promise.reject(error);
         }
-    },  function (error) {
+    }, function (error) {
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         // Do something with response error
         return Promise.reject(error);
-      });
+    });
 })(axios);

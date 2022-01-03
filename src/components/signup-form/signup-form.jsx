@@ -12,10 +12,12 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Typography } from '@mui/material';
-import { signUp } from '../../services/http/http';
+import { signUp } from '../../services';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = (props) => {
 
+    let navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
     const validationSchema = yup.object({
@@ -57,7 +59,7 @@ const SignUpForm = (props) => {
                 if (res.data.statusCode === 200) {
                     // toast.success(res.data.message);
                     // setLoader(false);
-                    let user = res.data.data;
+                    navigate('/login');
                 }
             } catch (error) {
                 // setLoader(false);

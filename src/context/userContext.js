@@ -10,7 +10,8 @@ const userReducer = (state, action) => {
                 firstName: action.payload.firstName,
                 lastName: action.payload.lastName,
                 email: action.payload.email,
-                token: action.payload.token
+                token: action.payload.token,
+                userId: action.payload.id
             };
         case 'LOGOUT':
             return {
@@ -28,7 +29,8 @@ let initialState = {
     firstName: '',
     lastName: '',
     email: '',
-    token: ''
+    token: '',
+    userId: ''
 }
 
 export const UserProvider = ({ children }) => {
@@ -38,6 +40,7 @@ export const UserProvider = ({ children }) => {
         initialState.lastName = user.lastName
         initialState.email = user.email
         initialState.token = user.token
+        initialState.userId = user.id
     }
 
     const [userState, userDispatch] = useReducer(userReducer, initialState);
