@@ -13,7 +13,7 @@ const settings = ['Create a meeting for later', 'Start an instant meeting'];
 const NewMeet = () => {
 
     const [open, setOpen] = useState(false);
-    const [setAnchorElNav] = useState(null);
+    const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [meetId, setMeetId] = useState('');
 
@@ -27,6 +27,7 @@ const NewMeet = () => {
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
+        console.log(anchorElNav)
     };
 
     const handleMeet = async (option) => {

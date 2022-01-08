@@ -21,7 +21,7 @@ const Header = () => {
   const { user, userDispatch } = useUser();
   const [date] = useState(new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' }).format(Date.now()));
   const [time] = useState(new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit' }).format(Date.now()));
-  const [setAnchorElNav] = useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   // const handleOpenNavMenu = (event) => {
@@ -33,6 +33,7 @@ const Header = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    console.log(anchorElNav)
   };
 
   const handleCloseUserMenu = () => {

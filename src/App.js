@@ -37,7 +37,12 @@ function App() {
           </PrivateRoute>
         }
         />
-        <Route exact path='/tapri/:meeting_id' element={<Join />} />
+        <Route exact path='/tapri/:meeting_id' element={
+          <PrivateRoute>
+            <Join />
+          </PrivateRoute>
+        }
+        />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/sign-up' element={<SignUp />} />
         <Route exact path='/error' element={<Fallback />} />

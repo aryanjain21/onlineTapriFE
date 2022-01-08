@@ -12,7 +12,7 @@ import { useMeeting } from '../../context/meetingContext';
 const Join = (props) => {
 
     const { socket, setSocket } = useSocket();
-    const { dispatchMeeting } = useMeeting();
+    const { meeting, dispatchMeeting } = useMeeting();
     const { audioVideoDispatch } = useAudioVideo();
     const { user } = useUser();
     const userVideoRef = useRef();  //My video
@@ -66,7 +66,7 @@ const Join = (props) => {
                 }
             })
         } else {
-            socket.emit('ask to join', { "room_id": meetingInfo.data.room, "name": user.firstName + ' ' + user.lastName, "user_id": user.userId }, (data) => {
+            socket.emit('ask to join', { "room_id": meetingInfo.data.room, "socket_id": meeting.meetingHost.socket_id, "name": user.firstName + ' ' + user.lastName, "user_id": user.userId }, (data) => {
 
             })
         }
@@ -75,7 +75,7 @@ const Join = (props) => {
     return (
         <Box sx={{}} pt={4}>
             {(meetingInfo?.statusCode === 200) && !joined && (<JoiningMeet userVideoRef={userVideoRef} meetingInfo={meetingInfo} joinMeet={joinMeet} />)}
-            {joined && (<CustomDrawer askJoin={askJoin} setAskJoin={setAskJoin} handleModalClose={handleModalClose} handleAllowUser={handleAllowUser} />)}
+            {joined && (<CustomDrawer askJoin={askJoin} setAskJoin={setAskJoin} allowUser={allowUser} handleModalClose={handleModalClose} handleAllowUser={handleAllowUser} />)}
         </Box>
     );
 }

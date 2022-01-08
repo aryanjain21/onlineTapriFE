@@ -14,6 +14,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Chat from '../chat/chat';
 import { Button } from '@mui/material';
+import { useUser } from '../../context/userContext';
+import { useMeeting } from '../../context/meetingContext';
 
 const drawerWidth = 350;
 
@@ -75,7 +77,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function CustomDrawer(props) {
 
-    const { askJoin, handleModalClose, handleAllowUser } = props;
+    const { askJoin, handleModalClose, handleAllowUser, allowUser } = props;
+    const { user } = useUser();
+    const { meeting } = useMeeting();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
@@ -129,22 +133,22 @@ export default function CustomDrawer(props) {
                 <Divider />
                 <Chat />
             </Drawer>
-            <Modal
+            {(meeting.meetingHost._id === user.userId) && <Modal
                 open={askJoin}
                 onClose={handleModalClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={modalStyle}>
-                    <Typography sx={{marginBottom: "16px", fontSize: "16px"}} id="modal-modal-title" variant="h6" component="h6">
-                        Here's the link to your meeting
+                    <Typography sx={{ marginBottom: "16px", fontSize: "16px" }} id="modal-modal-title" variant="h6" component="h6">
+                        {allowUser.message}
                     </Typography>
-                    <Box sx={{width: "170px", float: "right", display: "flex", alignItems: "center", justifyContent: "space-between"}}>
+                    <Box sx={{ width: "170px", float: "right", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                         <Button variant="outlined" color="error" onClick={handleModalClose}>Denay</Button>
                         <Button variant='contained' onClick={handleAllowUser}>Admit</Button>
                     </Box>
                 </Box>
-            </Modal>
+            </Modal>}
         </Box>
     );
 }
