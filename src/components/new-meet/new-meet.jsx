@@ -33,7 +33,7 @@ const NewMeet = () => {
         if (option === 'Create a meeting for later') {
             let createMeet = await createMeeting();
             if (createMeet.data.statusCode === 200) {
-                setMeetId(`http://localhost:3000/tapri/${createMeet.data.data.meeting_id}`);
+                setMeetId(`https://online-tapri.netlify.app/tapri/${createMeet.data.data.meeting_id}`);
                 setOpen(true);
             }
         } else {

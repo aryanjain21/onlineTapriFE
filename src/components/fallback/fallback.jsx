@@ -12,7 +12,7 @@ const Fallback = (props) => {
             </Box>
             <Box component="span">
                 Make sure you entered the correct meeting code in the URL, for example: <br />
-                https://localhost:3000/tapri/<strong>xxxxxx</strong>
+                https://online-tapri.netlify.app/tapri/<strong>xxxxxx</strong>
             </Box>
             <Box sx={{marginTop: "24px"}}>
                 <Button variant='contained' onClick={() => navigate('/home')}>
