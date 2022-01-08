@@ -6,7 +6,7 @@ import { useSocket } from '../../context/socketContext';
 import { io } from "socket.io-client";
 import { useNavigate, useParams } from 'react-router-dom';
 import JoiningMeet from '../../components/joining-meet/joining-meet';
-import CustomDrawer from '../../components/custom-drawer/custom-drawer';
+import Room from '../room/room';
 import { useMeeting } from '../../context/meetingContext';
 
 const Join = (props) => {
@@ -75,7 +75,7 @@ const Join = (props) => {
     return (
         <Box sx={{}} pt={4}>
             {(meetingInfo?.statusCode === 200) && !joined && (<JoiningMeet userVideoRef={userVideoRef} meetingInfo={meetingInfo} joinMeet={joinMeet} />)}
-            {joined && (<CustomDrawer askJoin={askJoin} setAskJoin={setAskJoin} allowUser={allowUser} handleModalClose={handleModalClose} handleAllowUser={handleAllowUser} />)}
+            {joined && (<Room askJoin={askJoin} setAskJoin={setAskJoin} allowUser={allowUser} handleModalClose={handleModalClose} handleAllowUser={handleAllowUser} />)}
         </Box>
     );
 }
