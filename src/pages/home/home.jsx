@@ -1,4 +1,4 @@
-import { Box, Grid, styled } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import React from 'react';
 import HeroBanner from '../../components/hero-banner/hero-banner';
 import NewMeet from '../../components/new-meet/new-meet';

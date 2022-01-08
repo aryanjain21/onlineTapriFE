@@ -10,10 +10,11 @@ import Join from './pages/join/join';
 import Fallback from './components/fallback/fallback';
 import PrivateRoute from './privateRoute';
 import './config/axiosConfig';
+import CustomDrawer from './components/custom-drawer/custom-drawer';
 
 function App() {
 
-  const [mode, setMode] = useState(false);
+  const [mode] = useState(false);
 
   const theme = useMemo(
     () =>
@@ -40,6 +41,9 @@ function App() {
         <Route exact path='/tapri/:meeting_id' element={<Join />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/sign-up' element={<SignUp />} />
+        
+        <Route exact path='/drawer' element={<CustomDrawer />} />
+        <Route exact path='/error' element={<Fallback />} />
       </Routes>
     </ThemeProvider>
   );

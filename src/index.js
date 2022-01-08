@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserProvider } from './context/userContext';
+import { VideoAudioProvider } from './context/audioVideoContext';
+import { SocketProvider } from './context/socketContext';
+import { MeetingProvider } from './context/meetingContext';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <VideoAudioProvider>
+          <SocketProvider>
+            <MeetingProvider>
+              <App />
+            </MeetingProvider>
+          </SocketProvider>
+        </VideoAudioProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,

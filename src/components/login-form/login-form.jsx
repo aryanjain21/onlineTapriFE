@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
-import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import Box from '@mui/material/Box';
-import { makeStyles } from "@mui/styles";
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -15,7 +14,7 @@ import { Typography } from '@mui/material';
 import { signIn } from '../../services';
 import { useUser } from '../../context/userContext';
 
-const LoginForm = (props) => {
+const LoginForm = () => {
 
     const { userDispatch } = useUser();
     const [showPassword, setShowPassword] = useState(false);
@@ -36,23 +35,23 @@ const LoginForm = (props) => {
             )
     });
 
-    const guestLogin = async () => {
-        try {
-            let login = { email: 'admin@gmail.com', password: 'admin@123' };
-            // setLoader(true);
-            const res = await signIn(login);
-            if (res.data.status === 200) {
-                // toast.success(res.data.message);
-                // setLoader(false);
-                let user = res.data.data;
-                localStorage.setItem('setUser', JSON.stringify({ firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token, view: 'List', screen: 'Notes' }));
-                userDispatch({ type: 'SIGNIN', payload: user });
-            }
-        } catch (error) {
-            // setLoader(true);
-            // toast.error(error?.response?.data?.message);
-        }
-    }
+    // const guestLogin = async () => {
+    //     try {
+    //         let login = { email: 'admin@gmail.com', password: 'admin@123' };
+    //         // setLoader(true);
+    //         const res = await signIn(login);
+    //         if (res.data.status === 200) {
+    //             // toast.success(res.data.message);
+    //             // setLoader(false);
+    //             let user = res.data.data;
+    //             localStorage.setItem('setUser', JSON.stringify({ firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token, view: 'List', screen: 'Notes' }));
+    //             userDispatch({ type: 'SIGNIN', payload: user });
+    //         }
+    //     } catch (error) {
+    //         // setLoader(true);
+    //         // toast.error(error?.response?.data?.message);
+    //     }
+    // }
 
     const formik = useFormik({
         initialValues: {

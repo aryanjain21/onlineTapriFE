@@ -1,4 +1,4 @@
-import { Box, Grid, styled } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import React from 'react';
 import { makeStyles } from "@mui/styles";
 import HeroBanner from '../../components/hero-banner/hero-banner';
@@ -18,12 +18,6 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = (props) => {
 
     const classes = useStyles();
-    // const Item = styled(Paper)(({ theme }) => ({
-    //     ...theme.typography.body2,
-    //     padding: theme.spacing(1),
-    //     textAlign: 'center',
-    //     color: theme.palette.text.secondary,
-    // }));
 
     return (
         <Box sx={{ flexGrow: 1, height: "80vh" }} pt={4}>

@@ -5,7 +5,6 @@ const UserContext = React.createContext();
 const userReducer = (state, action) => {
     switch (action.type) {
         case 'SIGNIN':
-            let user = JSON.parse(localStorage.getItem('setUser'))
             return {
                 firstName: action.payload.firstName,
                 lastName: action.payload.lastName,
