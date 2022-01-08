@@ -13,8 +13,8 @@ const BottomBar = (props) => {
 
     const {drawerOpen, setOpen, list, setList} = props;
 
-    const [date, setDate] = useState(new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' }).format(Date.now()));
-    const [time, setTime] = useState(new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit' }).format(Date.now()));
+    const [date] = useState(new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' }).format(Date.now()));
+    const [time] = useState(new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit' }).format(Date.now()));
 
     return (
         <Box sx={{ height: "60px", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 32px", backgroundColor: "gray" }}>
