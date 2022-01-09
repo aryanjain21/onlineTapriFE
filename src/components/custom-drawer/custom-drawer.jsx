@@ -96,7 +96,6 @@ export default function CustomDrawer(props) {
         })
 
         socket.on("hey", (data) => {
-            console.log("data hey", data)
             setReceivingCall(true);
             setCaller(data.from);
             setCallerSignal(data.signal);
@@ -105,6 +104,11 @@ export default function CustomDrawer(props) {
 
 // eslint-disable-next-line
     }, [])
+
+    const getSocketId = ()=>{
+        let userObj = meeting.participant.find((part)=>part.user_id._id===user.userId)
+        return userObj.socket_id
+    }
 
 
     function callPeer(id) {
@@ -130,7 +134,8 @@ export default function CustomDrawer(props) {
         });
 
         peer.on("signal", data => {
-            socket.emit("callUser", { userToCall: id, signalData: data, from: user.userId })
+            let userSocketId=getSocketId();
+            socket.emit("callUser", { userToCall: id, signalData: data, from: userSocketId })
         })
 
         peer.on("stream", stream => {
@@ -181,7 +186,6 @@ export default function CustomDrawer(props) {
 
     let incomingCall;
     if (receivingCall) {
-        console.log("abcccc")
         incomingCall = (
             <div>
                 <h1>{caller} is calling you</h1>

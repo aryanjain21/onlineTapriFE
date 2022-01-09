@@ -5,7 +5,6 @@ import { useMeeting } from '../../context/meetingContext';
 const Participant = () => {
 
     const { meeting } = useMeeting();
-    console.log(meeting.participant)
 
     return (
         meeting.participant.map((list, index) => (
