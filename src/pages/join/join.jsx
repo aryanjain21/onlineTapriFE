@@ -16,6 +16,7 @@ const Join = (props) => {
     const { audioVideoDispatch } = useAudioVideo();
     const { user } = useUser();
     const userVideoRef = useRef();  //My video
+    const participantVideoRef = useRef();
     const navigate = useNavigate();
     const [joined, setJoined] = useState(false);
     const [meetingInfo, setMeetingInfo] = useState({});
@@ -75,7 +76,7 @@ const Join = (props) => {
     return (
         <Box sx={{}} pt={4}>
             {(meetingInfo?.statusCode === 200) && !joined && (<JoiningMeet userVideoRef={userVideoRef} meetingInfo={meetingInfo} joinMeet={joinMeet} />)}
-            {joined && (<Room askJoin={askJoin} setAskJoin={setAskJoin} allowUser={allowUser} handleModalClose={handleModalClose} handleAllowUser={handleAllowUser} />)}
+            {joined && (<Room participantVideoRef={participantVideoRef} askJoin={askJoin} setAskJoin={setAskJoin} allowUser={allowUser} handleModalClose={handleModalClose} handleAllowUser={handleAllowUser} />)}
         </Box>
     );
 }

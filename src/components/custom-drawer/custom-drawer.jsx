@@ -14,6 +14,7 @@ import Participant from '../participant-list/participant-list';
 import { Button } from '@mui/material';
 import { useUser } from '../../context/userContext';
 import { useMeeting } from '../../context/meetingContext';
+import ParticipantVideo from '../participant-video/participant-video';
 
 const drawerWidth = 350;
 
@@ -28,6 +29,25 @@ const modalStyle = {
     p: 4,
 };
 
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+    ({ theme, open }) => ({
+      flexGrow: 1,
+      padding: theme.spacing(3),
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      marginRight: -drawerWidth,
+      ...(open && {
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginRight: 0,
+      }),
+    }),
+  );
+
 const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -39,7 +59,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function CustomDrawer(props) {
 
-    const { askJoin, handleModalClose, handleAllowUser, allowUser, drawerOpen, setOpen, list, setList } = props;
+    const { participantVideoRef, askJoin, handleModalClose, handleAllowUser, allowUser, drawerOpen, setOpen, list, setList } = props;
     const { user } = useUser();
     const { meeting } = useMeeting();
     const theme = useTheme();
@@ -55,6 +75,9 @@ export default function CustomDrawer(props) {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
+            <Main>
+                <ParticipantVideo participantVideoRef={participantVideoRef} />
+            </Main>
             <Drawer
                 sx={{
                     width: drawerWidth,
