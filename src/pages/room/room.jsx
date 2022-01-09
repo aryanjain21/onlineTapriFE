@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import CustomDrawer from '../../components/custom-drawer/custom-drawer';
-import BottomBar from '../../components/bottom-bar/bottom-bar';
+// import BottomBar from '../../components/bottom-bar/bottom-bar';
 
 const Room = (props) => {
 
@@ -15,9 +15,9 @@ const Room = (props) => {
             <Box>
                 <CustomDrawer participantVideoRef={participantVideoRef} drawerOpen={drawerOpen} setOpen={setOpen} list={list} setList={setList} askJoin={askJoin} setAskJoin={setAskJoin} allowUser={allowUser} handleModalClose={handleModalClose} handleAllowUser={handleAllowUser} />
             </Box>
-            <Box sx={{ width: "100%", position: "absolute", bottom: "0" }}>
+            {/* <Box sx={{ width: "100%", position: "absolute", bottom: "0" }}>
                 <BottomBar drawerOpen={drawerOpen} setOpen={setOpen} list={list} setList={setList} />
-            </Box>
+            </Box> */}
         </Box>
     );
 }
