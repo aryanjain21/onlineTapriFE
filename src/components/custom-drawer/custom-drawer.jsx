@@ -87,7 +87,7 @@ export default function CustomDrawer(props) {
 
     useEffect(() => {
 
-        navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
 
             setStream(stream);
             if (participantVideoRef.current) {
@@ -102,11 +102,11 @@ export default function CustomDrawer(props) {
         })
 
 
-// eslint-disable-next-line
+        // eslint-disable-next-line
     }, [])
 
-    const getSocketId = ()=>{
-        let userObj = meeting.participant.find((part)=>part.user_id._id===user.userId)
+    const getSocketId = () => {
+        let userObj = meeting.participant.find((part) => part.user_id._id === user.userId)
         return userObj.socket_id
     }
 
@@ -134,7 +134,7 @@ export default function CustomDrawer(props) {
         });
 
         peer.on("signal", data => {
-            let userSocketId=getSocketId();
+            let userSocketId = getSocketId();
             socket.emit("callUser", { userToCall: id, signalData: data, from: userSocketId })
         })
 
@@ -180,7 +180,9 @@ export default function CustomDrawer(props) {
     let PartnerVideo;
     if (callAccepted) {
         PartnerVideo = (
-            <ParticipantVideo playsInline participantVideoRef={partnerVideo} autoPlay />
+            meeting.participant.map((part) => {
+                return <ParticipantVideo playsInline participantVideoRef={partnerVideo} autoPlay />
+            })
         );
     }
 
